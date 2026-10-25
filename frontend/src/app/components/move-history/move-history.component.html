@@ -1,0 +1,24 @@
+@if (moves().length === 0) {
+  <p class="empty">No moves yet.</p>
+} @else {
+  <div class="scroll">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Move</th>
+          <th scope="col">Player</th>
+          <th scope="col">Position</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (move of moves(); track move.moveNumber) {
+          <tr>
+            <td>{{ move.moveNumber }}</td>
+            <td><span class="badge" [class.x]="move.player === 'X'" [class.o]="move.player === 'O'">{{ move.player }}</span></td>
+            <td>{{ move.position }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

@@ -1,0 +1,36 @@
+.scores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 8px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+}
+
+.label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+strong {
+  font-size: 1.9rem;
+  line-height: 1;
+}
+
+.tile.x strong {
+  color: var(--x-color);
+}
+
+.tile.o strong {
+  color: var(--o-color);
+}

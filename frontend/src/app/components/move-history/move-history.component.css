@@ -1,0 +1,48 @@
+.empty {
+  margin: 0;
+  color: var(--muted);
+}
+
+.scroll {
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+th,
+td {
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.badge {
+  display: inline-block;
+  min-width: 1.6rem;
+  padding: 1px 8px;
+  border-radius: 999px;
+  text-align: center;
+  font-weight: 700;
+  background: var(--hover);
+}
+
+.badge.x {
+  color: var(--x-color);
+}
+
+.badge.o {
+  color: var(--o-color);
+}

@@ -1,0 +1,57 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: min(100%, 360px);
+  margin: 0 auto;
+}
+
+.cell {
+  aspect-ratio: 1 / 1;
+  font-size: clamp(2.5rem, 8vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s, border-color 0.15s;
+}
+
+.cell:not(:disabled):hover {
+  background: var(--hover);
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.cell:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Filled / locked cells keep their colour even though the button is disabled. */
+.cell:disabled {
+  cursor: not-allowed;
+}
+
+.cell.x {
+  color: var(--x-color);
+}
+
+.cell.o {
+  color: var(--o-color);
+}
+
+.cell.winning {
+  background: var(--win-bg);
+  border-color: var(--win-border);
+  box-shadow: 0 0 0 3px var(--win-border);
+  animation: pop 0.35s ease-out;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.92); }
+  60% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}

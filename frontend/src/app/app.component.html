@@ -1,0 +1,89 @@
+<main class="app">
+  <header class="header">
+    <h1>Tic Tac Toe</h1>
+    <p class="subtitle">Angular frontend · .NET backend</p>
+  </header>
+
+  @if (error(); as message) {
+    <div class="alert" role="alert">
+      <span data-testid="error">{{ message }}</span>
+      <button type="button" class="link" (click)="dismissError()">Dismiss</button>
+    </div>
+  }
+
+  <div class="layout">
+    <section class="card game" aria-label="Game">
+      <div class="mode-switch" role="group" aria-label="Game mode">
+        <button
+          type="button"
+          class="segment"
+          data-testid="mode-two-player"
+          [class.active]="mode() === 'TwoPlayer'"
+          [attr.aria-pressed]="mode() === 'TwoPlayer'"
+          [disabled]="busy()"
+          (click)="onModeSelected('TwoPlayer')"
+        >Two Player Mode</button>
+        <button
+          type="button"
+          class="segment"
+          data-testid="mode-computer"
+          [class.active]="mode() === 'VsComputer'"
+          [attr.aria-pressed]="mode() === 'VsComputer'"
+          [disabled]="busy()"
+          (click)="onModeSelected('VsComputer')"
+        >Play Against Computer</button>
+      </div>
+      <p class="mode-label">Selected mode: <strong data-testid="mode-label">{{ modeLabel() }}</strong></p>
+
+      @if (game(); as g) {
+        <div class="players" aria-label="Players">
+          <div class="chip x" [class.active]="g.currentPlayer === 'X'" data-testid="chip-x">
+            Player X @if (g.mode === 'VsComputer') { <small>(you)</small> }
+          </div>
+          <div class="chip o" [class.active]="g.currentPlayer === 'O'" data-testid="chip-o">
+            Player O @if (g.mode === 'VsComputer') { <small>(computer)</small> }
+          </div>
+        </div>
+
+        <p
+          class="status"
+          data-testid="status"
+          aria-live="polite"
+          [class.won]="g.status === 'Won'"
+          [class.draw]="g.status === 'Draw'"
+        >{{ headline() }}</p>
+
+        <app-board
+          [board]="g.board"
+          [winningCells]="g.winningCells"
+          [disabled]="boardDisabled()"
+          (cellSelected)="onCellSelected($event)"
+        />
+
+        <div class="actions">
+          <button type="button" class="btn" data-testid="undo" [disabled]="!canUndo()" (click)="undo()">Undo Last Move</button>
+          <button type="button" class="btn primary" data-testid="reset-game" [disabled]="busy()" (click)="resetGame()">Reset Game</button>
+        </div>
+      } @else if (!error()) {
+        <p class="loading">Loading…</p>
+      } @else {
+        <div class="actions">
+          <button type="button" class="btn primary" (click)="startNewGame('TwoPlayer')">Retry</button>
+        </div>
+      }
+    </section>
+
+    <aside class="side">
+      <section class="card" aria-label="Scoreboard">
+        <h2>Scoreboard</h2>
+        <app-scoreboard [scoreboard]="scoreboard()" />
+        <button type="button" class="btn small" data-testid="reset-scoreboard" [disabled]="busy()" (click)="resetScoreboard()">Reset Scoreboard</button>
+      </section>
+
+      <section class="card" aria-label="Move history">
+        <h2>Move history</h2>
+        <app-move-history [moves]="moves()" />
+      </section>
+    </aside>
+  </div>
+</main>
