@@ -5,8 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>TicTacToe.Api</RootNamespace>
-    <!-- Lets the app run on a newer installed .NET runtime (9, 10, ...) if .NET 8 is not installed. -->
-    <RollForward>LatestMajor</RollForward>
+    <!-- Uses .NET 8 if installed; rolls forward to a newer runtime only if 8 is missing. -->
+	<RollForward>Major</RollForward>
 	<TargetLatestRuntimePatch>false</TargetLatestRuntimePatch>
   </PropertyGroup>
 

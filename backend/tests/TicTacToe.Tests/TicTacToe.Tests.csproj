@@ -6,8 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
-	<!-- Lets the app run on a newer installed .NET runtime (9, 10, ...) if .NET 8 is not installed. -->
-    <RollForward>LatestMajor</RollForward>
+	<!-- Tests must run on .NET 8 so the in-memory test server matches the Mvc.Testing 8.x packages. -->
+	<RollForward>LatestPatch</RollForward>
 	<TargetLatestRuntimePatch>false</TargetLatestRuntimePatch>
   </PropertyGroup>
 
